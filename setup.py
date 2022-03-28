@@ -13,7 +13,7 @@ requirements = read('REQUIREMENTS').splitlines()
 tests_requirements = read('REQUIREMENTS-TESTS').splitlines()
 
 setup(
-    name="django-report-runner",
+    name="django-reports",
     version="1.0",
     description="Django Reports allows you to build Django admin level reports using SQL, forms, views, and JasperServer.",
     long_description=read('README.md'),

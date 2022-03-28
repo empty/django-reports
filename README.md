@@ -1,11 +1,11 @@
-# django-report-runner
+# django-reports
 
 Django Reports is a reuasable application that allows you to create admin
 reports using SQL, forms, views, or JasperServer.
 
 ## Installation
 
-pip install django-report-runner
+pip install django-reports
 
 ## Quickstart
 
