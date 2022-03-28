@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('view', models.CharField(blank=True, max_length=1000, verbose_name='view')),
                 ('form', models.CharField(blank=True, max_length=500, verbose_name='form')),
                 ('parameters', models.CharField(blank=True, max_length=4000, verbose_name='parameters')),
-                ('category', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='reports.Category')),
+                ('category', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='django_reports.Category')),
             ],
             options={
                 'verbose_name': 'report',

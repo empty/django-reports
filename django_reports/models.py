@@ -51,9 +51,9 @@ class Report(models.Model):
     def admin_run_report(self):
         result = ''
         if self.url:
-            result = '<a href="%s">PDF</a>' % reverse('admin:reports_report_run', args=[self.pk, 'pdf'])
+            result = '<a href="%s">PDF</a>' % reverse('admin:django_reports_report_run', args=[self.pk, 'pdf'])
         else:
-            result = '<a href="%s">Excel</a>' % reverse('admin:reports_report_run', args=[self.pk, 'excel'])
-            result += ' / <a href="%s">CSV</a>' % reverse('admin:reports_report_run', args=[self.pk, 'csv'])
+            result = '<a href="%s">Excel</a>' % reverse('admin:django_reports_report_run', args=[self.pk, 'excel'])
+            result += ' / <a href="%s">CSV</a>' % reverse('admin:django_reports_report_run', args=[self.pk, 'csv'])
         return format_html(result)
     admin_run_report.short_description = 'Format'
