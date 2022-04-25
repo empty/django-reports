@@ -28,13 +28,13 @@ class ReportAdmin(admin.ModelAdmin):
     def get_urls(self):
         urls = super(ReportAdmin, self).get_urls()
         custom_urls = [
-            url(r'^run/(?P<id>\d+)/(?P<format>\w+)/$', self.admin_site.admin_view(self.run), name='reports_report_run'),
+            url(r'^run/(?P<id>\d+)/(?P<format>\w+)/$', self.admin_site.admin_view(self.run), name='django_reports_report_run'),
         ]
         return custom_urls + urls
 
     def admin_edit(self, obj):
         return format_html("<a href=\"{0}\">Edit</a>".format(
-            reverse('admin:reports_report_change', args=(obj.id,))
+            reverse('admin:django_reports_report_change', args=(obj.id,))
         ))
     admin_edit.short_description = 'Edit'
 
