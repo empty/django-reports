@@ -15,4 +15,4 @@ class JasperServer(object):
             'endpoint': self.endpoint,
             'location': location,
         })
-        return requests.get(url, auth=auth, params=params)
+        return requests.get(url, auth=auth, params=params, timeout=None)
