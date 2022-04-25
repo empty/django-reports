@@ -133,7 +133,9 @@ class NoResultsException(Exception):
 
 
 class InvalidJasperReportException(Exception):
-    pass
+    def __init__(self, status_code, message):
+        self.status_code = status_code
+        self.message = message
 
 
 def generate_report(request, report, format, output_name, parameters, split_parameters):
@@ -150,8 +152,14 @@ def generate_report(request, report, format, output_name, parameters, split_para
         server = python_jasper.JasperServer("http://%s/jasperserver/rest_v2/reports" % settings.REPORTS_JASPER_SERVER, settings.REPORTS_JASPER_USERNAME, settings.REPORTS_JASPER_PASSWORD)
         response = server.run_report(report.url, request.GET.urlencode())
 
+        if response.status_code == 503:
+            raise InvalidJasperReportException(response.status_code, "503 Service Unavailable.")
+
+        if response.status_code == 404:
+            raise InvalidJasperReportException(response.status_code, "404 Report Not Found.")
+
         if response.status_code != 200:
-            raise InvalidJasperReportException("The report configuration is invalid.")
+            raise InvalidJasperReportException(response.status_code, "The report configuration is invalid.")
 
         final_response = HttpResponse(response.content, content_type='application/pdf')
         final_response['Content-Disposition'] = 'attachment; filename=%s.pdf' % output_name

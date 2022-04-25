@@ -77,8 +77,8 @@ class ReportAdmin(admin.ModelAdmin):
             except NoResultsException:
                 messages.info(request, "%s did not return any results." % report.name)
                 return redirect(settings.REPORTS_LIST)
-            except InvalidJasperReportException:
-                messages.error(request, "The report configuration is invalid.")
+            except InvalidJasperReportException as e:
+                messages.error(request, e.message)
                 return redirect(settings.REPORTS_LIST)
 
         module, klass = get_form(report)
