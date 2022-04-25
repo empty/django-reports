@@ -147,7 +147,7 @@ def generate_report(request, report, format, output_name, parameters, split_para
     # jasper driven report
     if report.url:
         from . import python_jasper
-        server = python_jasper.JasperServer("http://%s/jasperserver/rest_v2/reports" % settings.JASPER_SERVER, settings.JASPER_USERNAME, settings.JASPER_PASSWORD)
+        server = python_jasper.JasperServer("http://%s/jasperserver/rest_v2/reports" % settings.REPORTS_JASPER_SERVER, settings.REPORTS_JASPER_USERNAME, settings.REPORTS_JASPER_PASSWORD)
         response = server.run_report(report.url, request.GET.urlencode())
 
         if response.status_code != 200:
