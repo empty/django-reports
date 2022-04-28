@@ -150,7 +150,7 @@ def generate_report(request, report, format, output_name, parameters, split_para
     if report.url:
         from . import python_jasper
         server = python_jasper.JasperServer("http://%s/jasperserver/rest_v2/reports" % settings.REPORTS_JASPER_SERVER, settings.REPORTS_JASPER_USERNAME, settings.REPORTS_JASPER_PASSWORD)
-        response = server.run_report(report.url, request.GET.urlencode())
+        response = server.run_report(report.url, request.POST.urlencode())
 
         if response.status_code == 503:
             raise InvalidJasperReportException(response.status_code, "503 Service Unavailable.")
