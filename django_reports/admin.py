@@ -1,9 +1,8 @@
 
 import datetime
 
-from django.conf.urls import url
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse
+from django.urls import re_path, reverse
 from django.utils.html import format_html
 
 from django.contrib import admin
@@ -28,7 +27,7 @@ class ReportAdmin(admin.ModelAdmin):
     def get_urls(self):
         urls = super(ReportAdmin, self).get_urls()
         custom_urls = [
-            url(r'^run/(?P<id>\d+)/(?P<format>\w+)/$', self.admin_site.admin_view(self.run), name='django_reports_report_run'),
+            re_path(r'^run/(?P<id>\d+)/(?P<format>\w+)/$', self.admin_site.admin_view(self.run), name='django_reports_report_run'),
         ]
         return custom_urls + urls
 
